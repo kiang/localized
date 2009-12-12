@@ -1,6 +1,6 @@
 <?php
 /**
- * Spain Localized Validation class. Handles localized validation for Spain
+ * Polish Localized Validation class. Handles localized validation for Poland
  *
  * PHP versions 4 and 5
  *
@@ -13,20 +13,28 @@
  * @copyright     Copyright 2005-2009, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org
  * @package       localized
- * @since         localized 0.1
+ * @subpackage    localized.tests.cases.libs
+ * @since         Localized Plugin v 0.1
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-class SpValidation {
 
 /**
- * Checks phone numbers for spain
+ * PlValidation
  *
- * @param string $check The value to check.
- * @access public
- * @return boolean
+ * @package       localized
+ * @subpackage    localized.tests.cases.libs
  */
-	function phone($check) {
-		$pattern = '/^\\+?(34[-. ]?)?\\(?(([689]{1})(([0-9]{2})\\)?[-. ]?|([0-9]{1})\\)?[-. ]?([0-9]{1}))|70\\)?[-. ]?([0-9]{1}))([0-9]{2})[-. ]?([0-9]{1})[-. ]?([0-9]{1})[-. ]?([0-9]{2})$/';
+class PlValidation {
+
+/**
+ * Check zipcodes for Poland
+ *
+ * @param string $check Value to check
+ * @return boolean
+ * @access public
+ */
+	function postal($check) {
+		$pattern = '/^[0-9]{2}-[0-9]{3}$/D';
 		return preg_match($pattern, $check);
 	}
 }

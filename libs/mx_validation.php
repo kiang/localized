@@ -1,6 +1,6 @@
 <?php
 /**
- * Spanish Localized Validation class. Handles localized validation for Spain
+ * Mexican Localized Validation class. Handles localized validation for Mexico
  *
  * PHP versions 4 and 5
  *
@@ -19,22 +19,34 @@
  */
 
 /**
- * EsValidation
+ * MxValidation
  *
  * @package       localized
  * @subpackage    localized.tests.cases.libs
  */
-class EsValidation {
+class MxValidation {
 
 /**
- * Checks phone numbers for Spain
+ * Checks phone numbers for Mexico
  *
  * @param string $check The value to check.
  * @return boolean
  * @access public
  */
 	function phone($check) {
-		$pattern = '/^\\+?(34[-. ]?)?\\(?(([689]{1})(([0-9]{2})\\)?[-. ]?|([0-9]{1})\\)?[-. ]?([0-9]{1}))|70\\)?[-. ]?([0-9]{1}))([0-9]{2})[-. ]?([0-9]{1})[-. ]?([0-9]{1})[-. ]?([0-9]{2})$/';
+		$pattern = '/^(\d{8}|\d{10}|\d{13}|((\d{2}[-,\s]){4}\d{2})|\(\d{3}\)\d{3}-\d{4}|\(\d{2}\)\d{4}-\d{4}|\d{3}[-,\s]\d{2}[-,\s]\d{8})$/i';
+		return preg_match($pattern, $check);
+	}
+
+/**
+ * Checks zipcodes for Mexico
+ *
+ * @param string $check The value to check.
+ * @return boolean
+ * @access public
+ */
+	function postal($check) {
+		$pattern = '/^\d{5}$/i';
 		return preg_match($pattern, $check);
 	}
 }

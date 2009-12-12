@@ -13,17 +13,25 @@
  * @copyright     Copyright 2005-2009, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org
  * @package       localized
- * @since         localized 0.1
+ * @subpackage    localized.tests.cases.libs
+ * @since         Localized Plugin v 0.1
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::import('Lib', 'Localized.BrValidation');
 
+/**
+ * BrValidationTestCase
+ *
+ * @package       localization
+ * @subpackage    localized.tests.cases.libs
+ */
 class BrValidationTest extends CakeTestCase {
 
 /**
  * test the phone method of BrValidation
  *
  * @return void
+ * @access public
  */
 	function testPhone() {
 		$this->assertFalse(BrValidation::phone('teststring'));
@@ -50,6 +58,7 @@ class BrValidationTest extends CakeTestCase {
  * test the postal method of BrValidation
  *
  * @return void
+ * @access public
  */
 	function testPostal() {
 		$this->assertFalse(BrValidation::postal('111'));
@@ -66,8 +75,10 @@ class BrValidationTest extends CakeTestCase {
  * test the ssn method of BrValidation
  *
  * @return void
+ * @access public
  */
 	function testSsn() {
+		// Testing CPF
 		$this->assertFalse(BrValidation::ssn('22692173811'));
 		$this->assertFalse(BrValidation::ssn('50549727322'));
 		$this->assertFalse(BrValidation::ssn('869.283.422-11'));
@@ -77,6 +88,25 @@ class BrValidationTest extends CakeTestCase {
 		$this->assertTrue(BrValidation::ssn('50549727302'));
 		$this->assertTrue(BrValidation::ssn('869.283.422-00'));
 		$this->assertTrue(BrValidation::ssn('843.701.734-34'));
+
+		// Testing CNPJ
+		$this->assertFalse(BrValidation::ssn('04295165000133'));
+		$this->assertFalse(BrValidation::ssn('33530485000129'));
+		$this->assertFalse(BrValidation::ssn('04295166000101'));
+		$this->assertFalse(BrValidation::ssn('33530486000130'));
+		$this->assertFalse(BrValidation::ssn('04.295.165/0001-33'));
+		$this->assertFalse(BrValidation::ssn('33.530.485/0001-29'));
+		$this->assertFalse(BrValidation::ssn('04.295.166/0001-01'));
+		$this->assertFalse(BrValidation::ssn('33.530.486/0001-30'));
+
+		$this->assertTrue(BrValidation::ssn('04295166000133'));
+		$this->assertTrue(BrValidation::ssn('33530486000129'));
+		$this->assertTrue(BrValidation::ssn('04.295.166/0001-33'));
+		$this->assertTrue(BrValidation::ssn('33.530.486/0001-29'));
+
+		// Testing invalid input
+		$this->assertFalse(BrValidation::ssn('3712093712890371289073901287390812'));
+		$this->assertFalse(BrValidation::ssn('33aaaa86000129'));
 	}
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Spanish Localized Validation class. Handles localized validation for Spain
+ * BD Localized Validation class. Handles localized validation for Bangladesh
  *
  * PHP versions 4 and 5
  *
@@ -19,22 +19,22 @@
  */
 
 /**
- * EsValidation
+ * BdValidation
  *
  * @package       localized
  * @subpackage    localized.tests.cases.libs
  */
-class EsValidation {
+class BdValidation {
 
 /**
- * Checks phone numbers for Spain
+ * Checks zipcodes for Bangladesh
  *
  * @param string $check The value to check.
  * @return boolean
  * @access public
  */
-	function phone($check) {
-		$pattern = '/^\\+?(34[-. ]?)?\\(?(([689]{1})(([0-9]{2})\\)?[-. ]?|([0-9]{1})\\)?[-. ]?([0-9]{1}))|70\\)?[-. ]?([0-9]{1}))([0-9]{2})[-. ]?([0-9]{1})[-. ]?([0-9]{1})[-. ]?([0-9]{2})$/';
+	function postal($check) {
+		$pattern = '/^\d{4}$/';
 		return preg_match($pattern, $check);
 	}
 }

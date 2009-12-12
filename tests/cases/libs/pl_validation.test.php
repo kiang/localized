@@ -1,6 +1,6 @@
 <?php
 /**
- * Spanish Localized Validation class. Handles localized validation for Spain
+ * Polish Localized Validation class test case
  *
  * PHP versions 4 and 5
  *
@@ -17,25 +17,26 @@
  * @since         Localized Plugin v 0.1
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+App::import('Lib', 'Localized.PlValidation');
 
 /**
- * EsValidation
+ * PlValidationTestCase
  *
- * @package       localized
+ * @package       localization
  * @subpackage    localized.tests.cases.libs
  */
-class EsValidation {
+class PlValidationTestCase extends CakeTestCase {
 
 /**
- * Checks phone numbers for Spain
+ * test the postal method of PlValidation
  *
- * @param string $check The value to check.
- * @return boolean
+ * @return void
  * @access public
  */
-	function phone($check) {
-		$pattern = '/^\\+?(34[-. ]?)?\\(?(([689]{1})(([0-9]{2})\\)?[-. ]?|([0-9]{1})\\)?[-. ]?([0-9]{1}))|70\\)?[-. ]?([0-9]{1}))([0-9]{2})[-. ]?([0-9]{1})[-. ]?([0-9]{1})[-. ]?([0-9]{2})$/';
-		return preg_match($pattern, $check);
+	function testPostal() {
+		$this->assertTrue(PlValidation::postal('63-400'));
+		$this->assertFalse(PlValidation::postal('63400'));
+		$this->assertFalse(PlValidation::postal('634-00'));
 	}
 }
 ?>
